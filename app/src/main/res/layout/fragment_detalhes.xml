@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="br.com.mobile_test.ui.detalhes.DetalhesViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.detalhes.DetalhesFragment">
+
+            <ImageView
+                android:id="@+id/detalhesPoster"
+                style="@style/movieBanner"
+                loadImage="@{viewmodel.movieDetails}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/detalhesTitle"
+                style="@style/movieTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewmodel.movieDetails.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/detalhesPoster"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/detalhesRating"
+                setRating="@{viewmodel.movieDetails}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_start"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="@id/detalhesTitle"
+                app:layout_constraintTop_toBottomOf="@id/detalhesTitle" />
+
+            <TextView
+                android:id="@+id/detalhesDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{viewmodel.movieDetails.release_date}"
+                app:layout_constraintStart_toStartOf="@id/detalhesRating"
+                app:layout_constraintTop_toBottomOf="@id/detalhesRating" />
+
+            <TextView
+                android:id="@+id/detalhesGenres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@id/detalhesRating"
+                app:layout_constraintTop_toBottomOf="@id/detalhesDate" />
+
+
+            <TextView
+                android:id="@+id/detalhesDuracao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="@id/detalhesGenres"
+                app:layout_constraintTop_toBottomOf="@id/detalhesGenres" />
+
+            <TextView
+                android:id="@+id/detalhesResumo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="start"
+                android:text="@{viewmodel.movieDetails.overview}"
+                app:layout_constraintEnd_toEndOf="@id/detalhesTitle"
+                app:layout_constraintStart_toStartOf="@id/detalhesPoster"
+                app:layout_constraintTop_toBottomOf="@id/detalhesPoster" />
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/detalhesrvCompanies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                setVisibility="@{viewmodel.loading}"
+                app:layout_constraintStart_toStartOf="@id/detalhesResumo"
+                app:layout_constraintTop_toBottomOf="@id/detalhesResumo" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/detalhesrvCast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                setVisibility="@{viewmodel.loading}"
+                app:layout_constraintStart_toStartOf="@id/detalhesrvCompanies"
+                app:layout_constraintTop_toBottomOf="@id/detalhesrvCompanies" />
+
+
+            <ProgressBar
+                setVisibility="@{viewmodel.loading}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

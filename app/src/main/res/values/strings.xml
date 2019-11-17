@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">mobile-test</string>
+
+    <string name="url_image">https://image.tmdb.org/t/p/w500</string>
+
+    <string name="api_key">8c91a5610684aef31368a4b19737bef4</string>
+    <string name="api_language">pt-BR</string>
+
+    <string name="hint_et_pesquisar">Encontre seu filme aqui!</string>
+    <string name="btnDetalhes">Detalhes</string>
+
+</resources>
