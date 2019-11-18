@@ -9,4 +9,9 @@
     <string name="hint_et_pesquisar">Encontre seu filme aqui!</string>
     <string name="btnDetalhes">Detalhes</string>
 
+    <string name="search">Buscar</string>
+    <string name="resumoDetalhes">Resumo</string>
+    <string name="produtoraDetalhes">Produtoras</string>
+    <string name="elencoDetalhes">Elenco</string>
+
 </resources>

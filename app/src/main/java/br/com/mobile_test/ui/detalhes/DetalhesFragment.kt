@@ -18,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_detalhes.*
 
 class DetalhesFragment : Fragment() {
 
+
     private lateinit var binding : FragmentDetalhesBinding
     private lateinit var detalhesViewModel : DetalhesViewModel
 

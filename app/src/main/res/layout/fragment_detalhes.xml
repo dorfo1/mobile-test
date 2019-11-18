@@ -22,7 +22,9 @@
             <ImageView
                 android:id="@+id/detalhesPoster"
                 style="@style/movieBanner"
-                loadImage="@{viewmodel.movieDetails}"
+                moveDetail="@{viewmodel.movieDetails}"
+                url="@{viewmodel.movieDetails.imageURL}"
+                setVisibility="@{viewmodel.movieDetailResource}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,18 +34,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.movieDetails.title}"
+                setVisibility="@{viewmodel.movieDetailResource}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/detalhesPoster"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/detalhesRating"
-                setRating="@{viewmodel.movieDetails}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 android:drawableStart="@drawable/ic_start"
                 android:gravity="center"
+                setRating="@{viewmodel.movieDetails}"
+                setVisibility="@{viewmodel.movieDetailResource}"
                 app:layout_constraintStart_toStartOf="@id/detalhesTitle"
                 app:layout_constraintTop_toBottomOf="@id/detalhesTitle" />
 
@@ -51,8 +55,9 @@
                 android:id="@+id/detalhesDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@{viewmodel.movieDetails.release_date}"
+                android:layout_marginTop="4dp"
+                setData="@{viewmodel.movieDetails}"
+                setVisibility="@{viewmodel.movieDetailResource}"
                 app:layout_constraintStart_toStartOf="@id/detalhesRating"
                 app:layout_constraintTop_toBottomOf="@id/detalhesRating" />
 
@@ -60,7 +65,9 @@
                 android:id="@+id/detalhesGenres"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
+                setGenre="@{viewmodel.movieDetails}"
+                setVisibility="@{viewmodel.movieDetailResource}"
                 app:layout_constraintStart_toStartOf="@id/detalhesRating"
                 app:layout_constraintTop_toBottomOf="@id/detalhesDate" />
 
@@ -69,9 +76,33 @@
                 android:id="@+id/detalhesDuracao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
+                setDuracao="@{viewmodel.movieDetails}"
+                setVisibility="@{viewmodel.movieDetailResource}"
                 app:layout_constraintStart_toStartOf="@id/detalhesGenres"
                 app:layout_constraintTop_toBottomOf="@id/detalhesGenres" />
+
+            <TextView
+                android:id="@+id/detalhesOrcamento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                setValor="@{viewmodel.movieDetails}"
+                setVisibility="@{viewmodel.movieDetailResource}"
+                app:layout_constraintStart_toStartOf="@id/detalhesDuracao"
+                app:layout_constraintTop_toBottomOf="@id/detalhesDuracao" />
+
+            <TextView
+                android:id="@+id/labelResumo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                setVisibility="@{viewmodel.movieDetailResource}"
+                android:text="@string/resumoDetalhes"
+                app:layout_constraintStart_toStartOf="@id/detalhesPoster"
+                app:layout_constraintTop_toBottomOf="@id/detalhesPoster"/>
 
             <TextView
                 android:id="@+id/detalhesResumo"
@@ -81,9 +112,20 @@
                 android:gravity="start"
                 android:text="@{viewmodel.movieDetails.overview}"
                 app:layout_constraintEnd_toEndOf="@id/detalhesTitle"
-                app:layout_constraintStart_toStartOf="@id/detalhesPoster"
-                app:layout_constraintTop_toBottomOf="@id/detalhesPoster" />
+                app:layout_constraintStart_toStartOf="@id/labelResumo"
+                app:layout_constraintTop_toBottomOf="@id/labelResumo" />
 
+            <TextView
+                android:id="@+id/labelProdutoras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                android:text="@string/produtoraDetalhes"
+                setVisibility="@{viewmodel.movieDetailResource}"
+                app:layout_constraintStart_toStartOf="@id/detalhesPoster"
+                app:layout_constraintTop_toBottomOf="@id/detalhesResumo"/>
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -91,9 +133,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+
                 setVisibility="@{viewmodel.loading}"
-                app:layout_constraintStart_toStartOf="@id/detalhesResumo"
-                app:layout_constraintTop_toBottomOf="@id/detalhesResumo" />
+                app:layout_constraintStart_toStartOf="@id/labelProdutoras"
+                app:layout_constraintTop_toBottomOf="@id/labelProdutoras" />
+
+            <TextView
+                android:id="@+id/labelElenco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                android:text="@string/elencoDetalhes"
+                setVisibility="@{viewmodel.movieDetailResource}"
+                app:layout_constraintStart_toStartOf="@id/detalhesrvCompanies"
+                app:layout_constraintTop_toBottomOf="@id/detalhesrvCompanies"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/detalhesrvCast"
@@ -101,8 +156,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 setVisibility="@{viewmodel.loading}"
-                app:layout_constraintStart_toStartOf="@id/detalhesrvCompanies"
-                app:layout_constraintTop_toBottomOf="@id/detalhesrvCompanies" />
+                app:layout_constraintStart_toStartOf="@id/labelElenco"
+                app:layout_constraintTop_toBottomOf="@id/labelElenco" />
 
 
             <ProgressBar
@@ -113,6 +168,19 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="centerCrop"
+                moveDetail="@{viewmodel.movieDetails}"
+                url="@{viewmodel.movieDetails.backImageURL}"
+                setVisibility="@{viewmodel.movieDetailResource}"
+                app:layout_constraintTop_toBottomOf="@id/detalhesrvCast"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

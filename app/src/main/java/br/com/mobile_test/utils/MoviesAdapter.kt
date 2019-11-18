@@ -1,6 +1,5 @@
-package br.com.mobile_test.ui.movies
+package br.com.mobile_test.utils
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import br.com.mobile_test.R
 import br.com.mobile_test.databinding.RowMovieItemBinding
 import br.com.mobile_test.model.Movie
-import kotlin.math.sign
 
-class MoviesAdapter() : PagedListAdapter<Movie, MoviesAdapter.MoviesHolder>(movieDiff) {
+class MoviesAdapter : PagedListAdapter<Movie, MoviesAdapter.MoviesHolder>(
+    movieDiff
+) {
 
     private lateinit var listener: MovieListener
 
@@ -37,7 +37,6 @@ class MoviesAdapter() : PagedListAdapter<Movie, MoviesAdapter.MoviesHolder>(movi
         }
 
     }
-
 
     fun setOnMovieClickListener(listener: MovieListener) {
         this.listener = listener

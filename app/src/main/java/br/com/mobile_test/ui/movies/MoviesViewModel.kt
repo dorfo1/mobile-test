@@ -10,6 +10,7 @@ import br.com.mobile_test.model.MovieResponse
 import br.com.mobile_test.repositories.MoviesRepository
 import br.com.mobile_test.ui.movies.paging.MovieDataSourceFactory
 import br.com.mobile_test.utils.MovieResource
+import br.com.mobile_test.utils.NetworkState
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 
@@ -19,8 +20,6 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
 
 
     var movieList: LiveData<PagedList<Movie>>
-
-
 
     private var compositeDisposable = CompositeDisposable()
 
@@ -37,10 +36,15 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
             .setEnablePlaceholders(false)
             .build()
         movieList = LivePagedListBuilder<Int,Movie>(sourceFactory,config).build()
+
     }
 
-    var loading : LiveData<Boolean> = Transformations.map(movieList) {
-        it.isEmpty()
+    val networkState : LiveData<NetworkState> = Transformations.switchMap(sourceFactory.dataSource){ source ->
+        source.networkState
+    }
+
+    var loading : LiveData<Boolean> = Transformations.map(networkState) {
+        it is NetworkState.Loading
     }
 
     override fun onCleared() {
